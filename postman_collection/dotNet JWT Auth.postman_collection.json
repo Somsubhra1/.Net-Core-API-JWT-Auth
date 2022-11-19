@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "3f7a8726-856f-4758-9cc6-671e08d7b07e",
+		"name": ".Net JWT Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5413395"
+	},
+	"item": [
+		{
+			"name": "Authorize",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"Admin\",\n    \"password\": \"Password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7127/api/Token/Authenticate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7127",
+					"path": [
+						"api",
+						"Token",
+						"Authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Names - Protected",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJBZG1pbiIsIm5iZiI6MTY2ODg0NDIwMCwiZXhwIjoxNjY4ODQ2MDAwLCJpYXQiOjE2Njg4NDQyMDB9.gu95rNvXr0hrPbiRNrhWnv256hy59TWZSGpnPOYjh1c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7127/api/Name/GetNames",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7127",
+					"path": [
+						"api",
+						"Name",
+						"GetNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me API - Protected",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJBZG1pbiIsIm5iZiI6MTY2ODg0NDg2OSwiZXhwIjoxNjY4ODQ2NjY5LCJpYXQiOjE2Njg4NDQ4Njl9.LjFy3IPq50R4oOAxPxoGQUUeUy5ypyUUe-r4bYAMry8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7127/api/Token/me",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7127",
+					"path": [
+						"api",
+						"Token",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
