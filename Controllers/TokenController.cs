@@ -30,7 +30,7 @@ namespace JWTAuth.Controllers
         public IActionResult Authenticate([FromBody] UserCredential credential)
         {
 
-            if (_userRepository.GetUser(credential.UserName, credential.Password) == null)
+            if (_userRepository.GetUserAsync(credential.UserName, credential.Password) == null)
             {
                 return Unauthorized("Invalid username or password");
             }
