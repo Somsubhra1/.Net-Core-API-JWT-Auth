@@ -6,7 +6,7 @@
 
 ## Technologies/Dependencies used
 
-- .Net Core 7
+- .Net Core 7.0
 - JWTBearer
 - IdentityModels
 - OpenAPI
