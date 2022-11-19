@@ -27,10 +27,11 @@ namespace JWTAuth.Controllers
 
 
         [HttpPost("Authenticate")]
-        public IActionResult Authenticate([FromBody] UserCredential credential)
+        public async Task<IActionResult> AuthenticateAsync([FromBody] UserCredential credential)
         {
+            var user = await _userRepository.GetUserAsync(credential.UserName, credential.Password);
 
-            if (_userRepository.GetUserAsync(credential.UserName, credential.Password) == null)
+            if (user == null)
             {
                 return Unauthorized("Invalid username or password");
             }
@@ -42,12 +43,13 @@ namespace JWTAuth.Controllers
 
         [Authorize]
         [HttpGet("me")]
-        public IActionResult Me()
+        public async Task<IActionResult> MeAsync()
         {
             var token = HttpContext.GetTokenAsync("access_token").Result;
-
             var userName = _jwtTokenManager.DecodeToken(token);
-            return Ok(userName);
+            var user = await _userRepository.GetUserByUserNameAsync(userName);
+
+            return Ok(user);
         }
     }
 }

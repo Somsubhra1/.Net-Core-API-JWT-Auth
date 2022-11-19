@@ -19,6 +19,13 @@ namespace JWTAuth.Repositories
 
             return user;
         }
+
+        public async Task<User?> GetUserByUserNameAsync(string username)
+        {
+            var user = await _context.Users.Where(user => user.UserName == username).FirstOrDefaultAsync();
+
+            return user;
+        }
     }
 }
 
