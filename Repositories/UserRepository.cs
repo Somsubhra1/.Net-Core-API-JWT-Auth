@@ -1,33 +1,21 @@
 ﻿using System;
 using JWTAuth.IRepositories;
 using JWTAuth.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JWTAuth.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly List<User> _users;
-        public UserRepository()
+        private readonly AuthDbContext _context;
+        public UserRepository(AuthDbContext dbContext)
         {
-            _users = new List<User>()
-            {
-                new User()
-                {
-                    UserName= "Admin",
-                    Password = "Password"
-                },
-                new User()
-                {
-                    UserName= "Admin2",
-                    Password = "Password"
-                },
-
-            };
+            _context = dbContext;
         }
 
-        public User? GetUser(string username, string password)
+        public async Task<User?> GetUserAsync(string username, string password)
         {
-            var user = _users.Where(u => u.UserName == username && u.Password == password).FirstOrDefault();
+            var user = await _context.Users.Where(user => user.UserName == username && user.Password == password).FirstOrDefaultAsync();
 
             return user;
         }

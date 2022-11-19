@@ -1,9 +1,11 @@
 ﻿using System.Text;
 using JWTAuth;
 using JWTAuth.IRepositories;
+using JWTAuth.Models;
 using JWTAuth.Repositories;
 using JWTAuth.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -33,8 +35,11 @@ builder.Services.AddAuthentication(authOptions =>
     };
 });
 
+builder.Services.AddDbContext<AuthDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DbUri")));
+
 builder.Services.AddSingleton<IJwtTokenManager, JwtTokenManager>();
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
