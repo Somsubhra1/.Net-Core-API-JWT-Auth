@@ -15,7 +15,7 @@ namespace JWTAuth.Utils
             _configuration = configuration;
         }
 
-        public string? Authenticate(string userName, string password)
+        public string? Authenticate(string userName)
         {
 
             var key = _configuration.GetValue<string>("JwtConfig:Key");

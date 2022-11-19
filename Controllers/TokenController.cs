@@ -35,7 +35,7 @@ namespace JWTAuth.Controllers
                 return Unauthorized("Invalid username or password");
             }
 
-            var token = _jwtTokenManager.Authenticate(credential.UserName, credential.Password);
+            var token = _jwtTokenManager.Authenticate(credential.UserName);
 
             return Ok(token);
         }
