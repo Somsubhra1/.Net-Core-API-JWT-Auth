@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using JWTAuth.DTO;
 using JWTAuth.IRepositories;
 using JWTAuth.Utils;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -36,6 +38,16 @@ namespace JWTAuth.Controllers
             var token = _jwtTokenManager.Authenticate(credential.UserName, credential.Password);
 
             return Ok(token);
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult Me()
+        {
+            var token = HttpContext.GetTokenAsync("access_token").Result;
+
+            var userName = _jwtTokenManager.DecodeToken(token);
+            return Ok(userName);
         }
     }
 }

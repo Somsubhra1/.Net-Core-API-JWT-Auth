@@ -17,6 +17,8 @@ namespace JWTAuth.Controllers
         public IActionResult GetNames()
         {
             var token = HttpContext.GetTokenAsync("access_token").Result; // get the token using this in controller
+
+
             return Ok(new List<string> { "name1", "name2" });
         }
 
