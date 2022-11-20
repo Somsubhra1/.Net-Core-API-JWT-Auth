@@ -43,11 +43,13 @@ namespace JWTAuth.Controllers
 
         [Authorize]
         [HttpGet("me")]
-        public async Task<IActionResult> MeAsync()
+        public IActionResult Me()
         {
-            var token = HttpContext.GetTokenAsync("access_token").Result;
-            var userName = _jwtTokenManager.DecodeToken(token);
-            var user = await _userRepository.GetUserByUserNameAsync(userName);
+            //var token = HttpContext.GetTokenAsync("access_token").Result;
+            //var userName = _jwtTokenManager.DecodeToken(token);
+            //var user = await _userRepository.GetUserByUserNameAsync(userName);
+
+            var user = HttpContext.Items["User"];
 
             return Ok(user);
         }

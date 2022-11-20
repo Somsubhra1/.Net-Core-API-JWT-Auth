@@ -34,11 +34,15 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Helpers\" />
+    <None Remove="Middlewares\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
     <Folder Include="Models\" />
     <Folder Include="IRepositories\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 </Project>

@@ -38,14 +38,14 @@ namespace JWTAuth.Utils
             return tokenHandler.WriteToken(token);
         }
 
-        public string DecodeToken(string token)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var jsonToken = handler.ReadToken(token);
-            var tokenS = jsonToken as JwtSecurityToken;
+        //public string DecodeToken(string token)
+        //{
+        //    var handler = new JwtSecurityTokenHandler();
+        //    var jsonToken = handler.ReadToken(token);
+        //    var tokenS = jsonToken as JwtSecurityToken;
 
-            return tokenS.Claims.First(claim => claim.Type == "nameid").Value;
-        }
+        //    return tokenS.Claims.First(claim => claim.Type == "nameid").Value;
+        //}
     }
 }
 
