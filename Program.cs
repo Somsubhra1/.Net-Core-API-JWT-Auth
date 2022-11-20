@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using JWTAuth;
 using JWTAuth.IRepositories;
+using JWTAuth.Middlewares;
 using JWTAuth.Models;
 using JWTAuth.Repositories;
 using JWTAuth.Utils;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using WebApi.Helpers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
